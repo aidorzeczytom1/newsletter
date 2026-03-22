@@ -295,36 +295,78 @@
   <div class="form-card">
     <h2>Sign up — it's free</h2>
 
-    <form action="https://us12.list-manage.com/subscribe/post?u=e6ed6eeb5f3dbd75a79a832aa&amp;id=0058b9e0f0" method="post" novalidate>
-
-      <div class="field-group">
-        <div>
-          <label class="field-label" for="mce-FNAME">First Name</label>
-          <input class="field-input" type="text" id="mce-FNAME" name="FNAME" placeholder="Your first name">
-        </div>
-        <div>
-          <label class="field-label" for="mce-EMAIL">Email Address *</label>
-          <input class="field-input" type="email" id="mce-EMAIL" name="EMAIL" placeholder="your@email.com" required>
-        </div>
+    <div class="field-group">
+      <div>
+        <label class="field-label" for="mc-FNAME">First Name</label>
+        <input class="field-input" type="text" id="mc-FNAME" placeholder="Your first name">
       </div>
-
-      <!-- Mailchimp bot protection — do not remove -->
-      <div style="position:absolute;left:-5000px;" aria-hidden="true">
-        <input type="text" name="b_e6ed6eeb5f3dbd75a79a832aa_0058b9e0f0" tabindex="-1" value="">
+      <div>
+        <label class="field-label" for="mc-EMAIL">Email Address *</label>
+        <input class="field-input" type="email" id="mc-EMAIL" placeholder="your@email.com">
       </div>
+    </div>
 
-      <button class="btn-subscribe" type="submit">Subscribe →</button>
+    <div id="mc-message" style="min-height:20px;margin-bottom:12px;font-size:0.88rem;"></div>
 
-      <p class="privacy-note">
-        No spam. Unsubscribe with one click at any time.<br>
-        By subscribing you agree to the processing of your email and first name
-        for newsletter purposes. ·
-        <a href="https://aidorzeczy.carrd.co/" target="_blank" rel="noopener">Privacy Policy</a>
-      </p>
+    <button class="btn-subscribe" id="mc-submit" type="button" onclick="mcSubscribe()">Subscribe →</button>
 
-    </form>
+    <p class="privacy-note">
+      No spam. Unsubscribe with one click at any time.<br>
+      By subscribing you agree to the processing of your email and first name
+      for newsletter purposes. ·
+      <a href="https://aidorzeczy.carrd.co/" target="_blank" rel="noopener">Privacy Policy</a>
+    </p>
   </div>
   <!-- ═══ END FORM ═══ -->
+
+  <script>
+    function mcSubscribe() {
+      const email = document.getElementById('mc-EMAIL').value.trim();
+      const fname = document.getElementById('mc-FNAME').value.trim();
+      const msg   = document.getElementById('mc-message');
+      const btn   = document.getElementById('mc-submit');
+
+      if (!email || !email.includes('@')) {
+        msg.style.color = '#e07070';
+        msg.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      msg.style.color = 'rgba(250,248,244,0.5)';
+      msg.textContent = '';
+
+      const url = 'https://us12.list-manage.com/subscribe/post-json'
+        + '?u=e6ed6eeb5f3dbd75a79a832aa'
+        + '&id=0058b9e0f0'
+        + '&EMAIL=' + encodeURIComponent(email)
+        + '&FNAME='  + encodeURIComponent(fname)
+        + '&c=mcCallback';
+
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+    }
+
+    function mcCallback(data) {
+      const msg = document.getElementById('mc-message');
+      const btn = document.getElementById('mc-submit');
+
+      if (data.result === 'success') {
+        msg.style.color = '#6ee7b7';
+        msg.textContent = '✓ ' + data.msg;
+        btn.textContent = '✓ Subscribed!';
+        btn.style.background = '#1a7a72';
+      } else {
+        msg.style.color = '#e07070';
+        // strip HTML tags Mailchimp sometimes returns
+        msg.textContent = data.msg.replace(/<[^>]*>/g, '');
+        btn.disabled = false;
+        btn.textContent = 'Subscribe →';
+      }
+    }
+  </script>
 
   <div class="author">
     <div class="author-divider"></div>
