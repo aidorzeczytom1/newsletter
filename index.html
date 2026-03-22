@@ -291,24 +291,24 @@
     </div>
   </div>
 
-  <!-- ═══ MAILCHIMP FORM ═══ -->
+  <!-- ═══ FORMSPREE FORM ═══ -->
   <div class="form-card">
     <h2>Sign up — it's free</h2>
 
     <div class="field-group">
       <div>
         <label class="field-label" for="mc-FNAME">First Name</label>
-        <input class="field-input" type="text" id="mc-FNAME" placeholder="Your first name">
+        <input class="field-input" type="text" id="mc-FNAME" name="name" placeholder="Your first name">
       </div>
       <div>
         <label class="field-label" for="mc-EMAIL">Email Address *</label>
-        <input class="field-input" type="email" id="mc-EMAIL" placeholder="your@email.com">
+        <input class="field-input" type="email" id="mc-EMAIL" name="email" placeholder="your@email.com">
       </div>
     </div>
 
     <div id="mc-message" style="min-height:20px;margin-bottom:12px;font-size:0.88rem;"></div>
 
-    <button class="btn-subscribe" id="mc-submit" type="button" onclick="mcSubscribe()">Subscribe →</button>
+    <button class="btn-subscribe" id="mc-submit" type="button" onclick="fsSubscribe()">Subscribe →</button>
 
     <p class="privacy-note">
       No spam. Unsubscribe with one click at any time.<br>
@@ -320,7 +320,7 @@
   <!-- ═══ END FORM ═══ -->
 
   <script>
-    function mcSubscribe() {
+    async function fsSubscribe() {
       const email = document.getElementById('mc-EMAIL').value.trim();
       const fname = document.getElementById('mc-FNAME').value.trim();
       const msg   = document.getElementById('mc-message');
@@ -334,38 +334,41 @@
 
       btn.disabled = true;
       btn.textContent = 'Sending...';
-      msg.style.color = 'rgba(250,248,244,0.5)';
       msg.textContent = '';
 
-      const url = 'https://us12.list-manage.com/subscribe/post-json'
-        + '?u=e6ed6eeb5f3dbd75a79a832aa'
-        + '&id=0058b9e0f0'
-        + '&EMAIL=' + encodeURIComponent(email)
-        + '&FNAME='  + encodeURIComponent(fname)
-        + '&c=mcCallback';
+      try {
+        const response = await fetch('https://formspree.io/f/mkoqlrqa', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, name: fname })
+        });
 
-      const script = document.createElement('script');
-      script.src = url;
-      document.body.appendChild(script);
-    }
-
-    function mcCallback(data) {
-      const msg = document.getElementById('mc-message');
-      const btn = document.getElementById('mc-submit');
-
-      if (data.result === 'success') {
-        msg.style.color = '#6ee7b7';
-        msg.textContent = '✓ ' + data.msg;
-        btn.textContent = '✓ Subscribed!';
-        btn.style.background = '#1a7a72';
-      } else {
+        if (response.ok) {
+          msg.style.color = '#6ee7b7';
+          msg.textContent = '✓ You\'re on the list! Check your inbox to confirm.';
+          btn.textContent = '✓ Subscribed!';
+          btn.style.background = '#1a7a72';
+          document.getElementById('mc-EMAIL').value = '';
+          document.getElementById('mc-FNAME').value = '';
+        } else {
+          const data = await response.json();
+          msg.style.color = '#e07070';
+          msg.textContent = data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong. Please try again.';
+          btn.disabled = false;
+          btn.textContent = 'Subscribe →';
+        }
+      } catch (err) {
         msg.style.color = '#e07070';
-        // strip HTML tags Mailchimp sometimes returns
-        msg.textContent = data.msg.replace(/<[^>]*>/g, '');
+        msg.textContent = 'Connection error. Please try again.';
         btn.disabled = false;
         btn.textContent = 'Subscribe →';
       }
     }
+
+    // Allow Enter key to submit
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') fsSubscribe();
+    });
   </script>
 
   <div class="author">
