@@ -291,32 +291,8 @@
     </div>
   </div>
 
-  <!-- ═══ FORMSPREE FORM ═══ -->
-  <div class="form-card">
-    <h2>Sign up — it's free</h2>
-
-    <div class="field-group">
-      <div>
-        <label class="field-label" for="mc-FNAME">First Name</label>
-        <input class="field-input" type="text" id="mc-FNAME" name="name" placeholder="Your first name">
-      </div>
-      <div>
-        <label class="field-label" for="mc-EMAIL">Email Address *</label>
-        <input class="field-input" type="email" id="mc-EMAIL" name="email" placeholder="your@email.com">
-      </div>
-    </div>
-
-    <div id="mc-message" style="min-height:20px;margin-bottom:12px;font-size:0.88rem;"></div>
-
-    <button class="btn-subscribe" id="mc-submit" type="button" onclick="fsSubscribe()">Subscribe →</button>
-
-    <p class="privacy-note">
-      No spam. Unsubscribe with one click at any time.<br>
-      By subscribing you agree to the processing of your email and first name
-      for newsletter purposes. ·
-      <a href="https://privacy.aidorzeczy.com/" target="_blank" rel="noopener">Privacy Policy</a>
-    </p>
-  </div>
+  <!-- ═══ MailerLite FORM ═══ -->
+  
   <!-- ═══ END FORM ═══ -->
 
   <script>
@@ -345,7 +321,7 @@
 
         if (response.ok) {
           msg.style.color = '#6ee7b7';
-          msg.textContent = '✓ You\'re on the list! You\’ll receive a welcome package within a few days. Check your inbox and your spam folder as well.';
+          msg.textContent = '✓ You\'re on the list! You\’ll receive a welcome package within a few minutes. Check your inbox and your spam folder as well.';
           btn.textContent = '✓ Subscribed!';
           btn.style.background = '#1a7a72';
           document.getElementById('mc-EMAIL').value = '';
