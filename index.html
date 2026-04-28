@@ -135,98 +135,10 @@
       color: var(--paper);
     }
 
-    /* ── FORM CARD ── */
-    .form-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(200,169,81,0.25);
-      border-top: 2px solid var(--gold);
-      border-radius: 16px;
-      padding: 36px 32px;
+    /* ── MAILERLITE FORM WRAPPER ── */
+    .ml-embedded {
       margin-bottom: 20px;
     }
-
-    .form-card h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--paper);
-      margin-bottom: 24px;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .field-label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(250,248,244,0.5);
-      margin-bottom: 5px;
-      text-align: left;
-    }
-
-    .field-input {
-      width: 100%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      padding: 13px 16px;
-      font-size: 0.95rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--paper);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .field-input::placeholder { color: rgba(250,248,244,0.3); }
-
-    .field-input:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(200,169,81,0.15);
-    }
-
-    .btn-subscribe {
-      width: 100%;
-      background: var(--teal);
-      color: var(--paper);
-      border: none;
-      border-radius: 10px;
-      padding: 15px 24px;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
-      letter-spacing: 0.02em;
-    }
-
-    .btn-subscribe:hover {
-      background: var(--teal-light);
-      box-shadow: 0 0 24px rgba(45,168,157,0.35);
-    }
-
-    .btn-subscribe:active { transform: scale(0.98); }
-
-    /* ── PRIVACY NOTE ── */
-    .privacy-note {
-      font-size: 0.75rem;
-      color: rgba(250,248,244,0.35);
-      line-height: 1.6;
-      margin-top: 14px;
-    }
-
-    .privacy-note a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    .privacy-note a:hover { text-decoration: underline; }
 
     /* ── AUTHOR ── */
     .author {
@@ -258,10 +170,17 @@
       text-decoration: none;
     }
 
-    @media (max-width: 480px) {
-      .form-card { padding: 28px 20px; }
-    }
+
   </style>
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2291506');
+</script>
+<!-- End MailerLite Universal -->
 </head>
 <body>
 
@@ -291,28 +210,10 @@
     </div>
   </div>
 
-  <div class="form-card">
-    <form action="https://assets.mailerlite.com/jsonp/2291506/forms/2GxbR4/subscribe" method="post" target="_self">
-      <div class="field-group">
-        <label class="field-label">First Name</label>
-        <input type="text" class="field-input" name="fields[name]" placeholder="Your name">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Email Address</label>
-        <input type="email" class="field-input" name="fields[email]" placeholder="email@example.com" required>
-      </div>
-      
-      <input type="hidden" name="ml-submit" value="1">
-      
-      <button type="submit" class="btn-subscribe">Subscribe →</button>
-    </form>
+  <!-- ═══ MailerLite FORM ═══ -->
+  <div class="ml-embedded" data-form="2GxbR4"></div>
+  <!-- ═══ END FORM ═══ -->
 
-    <p class="privacy-note">
-      No spam. Unsubscribe with one click at any time.<br>
-      By subscribing you agree to the processing of your email for newsletter purposes. · 
-      <a href="https://privacy.aidorzeczy.com/" target="_blank" rel="noopener">Privacy Policy</a>
-    </p>
-  </div>
 
   <div class="author">
     <div class="author-divider"></div>
