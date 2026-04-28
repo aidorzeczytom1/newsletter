@@ -4,251 +4,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stay Ahead in AI — Don't Fear AI Newsletter</title>
-  <meta name="description" content="Be the first to know about new books, prompts and AI tools. Join the AI Made Simple newsletter by Leszek Ignatowicz.">
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <meta name="description" content="Join the Don't Fear AI newsletter by Leszek Ignatowicz.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    /* Stylistyka oparta na Twojej wersji v2 */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink:        #0f0e0e;
-      --paper:      #faf8f4;
-      --cream:      #f3efe6;
-      --gold:       #c8a951;
-      --gold-light: #e8d08a;
-      --teal:       #1a7a72;
-      --teal-light: #2da89d;
-      --text-body:  #2a2826;
-      --text-muted: #7a7268;
+      --ink: #0f0e0e; --paper: #faf8f4; --gold: #c8a951; --teal: #1a7a72; --teal-light: #2da89d;
     }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--ink);
-      color: var(--paper);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px 64px;
-      overflow-x: hidden;
+      font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--paper);
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 48px 24px; overflow-x: hidden;
     }
-
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(45,168,157,0.13) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(200,169,81,0.09) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(45,168,157,0.13) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
     }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 560px;
-      text-align: center;
-    }
-
-    /* ── BADGE ── */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(200,169,81,0.12);
-      border: 1px solid rgba(200,169,81,0.3);
-      border-radius: 30px;
-      padding: 6px 18px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-    }
-
-    /* ── HEADING ── */
-    h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 6vw, 2.8rem);
-      font-weight: 900;
-      line-height: 1.2;
-      color: var(--paper);
-      margin-bottom: 18px;
-    }
-
-    h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: rgba(250,248,244,0.65);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ── BENEFITS ── */
-    .benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 40px;
-      text-align: left;
-    }
-
-    .benefit {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 13px 16px;
-    }
-
-    .benefit-icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .benefit-text {
-      font-size: 0.88rem;
-      color: rgba(250,248,244,0.8);
-      line-height: 1.5;
-    }
-
-    .benefit-text strong {
-      color: var(--paper);
-    }
-
-    /* ── FORM CARD ── */
+    .wrap { position: relative; z-index: 1; width: 100%; max-width: 560px; text-align: center; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 900; margin-bottom: 18px; }
+    h1 em { font-style: normal; color: var(--gold); }
+    .subtitle { font-size: 1rem; color: rgba(250,248,244,0.65); margin-bottom: 36px; }
+    
+    /* Formularz */
     .form-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(200,169,81,0.25);
-      border-top: 2px solid var(--gold);
-      border-radius: 16px;
-      padding: 36px 32px;
-      margin-bottom: 20px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(200,169,81,0.25);
+      border-top: 2px solid var(--gold); border-radius: 16px; padding: 36px 32px; text-align: left;
     }
-
-    /* ── PRIVACY NOTE ── */
-    .privacy-note {
-      font-size: 0.75rem;
-      color: rgba(250,248,244,0.35);
-      line-height: 1.6;
-      margin-top: 14px;
+    .field-group { margin-bottom: 20px; }
+    .field-label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; color: rgba(250,248,244,0.5); margin-bottom: 8px; display: block; }
+    .field-input {
+      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px; padding: 14px; font-size: 0.95rem; color: var(--paper); outline: none;
     }
-
-    .privacy-note a {
-      color: var(--gold);
-      text-decoration: none;
+    .field-input:focus { border-color: var(--gold); }
+    .btn-subscribe {
+      width: 100%; background: var(--teal); color: var(--paper); border: none; border-radius: 10px;
+      padding: 16px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.2s;
     }
-
-    .privacy-note a:hover { text-decoration: underline; }
-
-    /* ── AUTHOR ── */
-    .author {
-      margin-top: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: rgba(250,248,244,0.45);
-      font-size: 0.82rem;
-    }
-
-    .author-divider {
-      width: 32px;
-      height: 1px;
-      background: rgba(200,169,81,0.3);
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      margin-top: 48px;
-      font-size: 0.75rem;
-      color: rgba(250,248,244,0.2);
-      text-align: center;
-    }
-
-    .footer a {
-      color: rgba(200,169,81,0.5);
-      text-decoration: none;
-    }
-
-    @media (max-width: 480px) {
-      .form-card { padding: 28px 20px; }
-    }
+    .btn-subscribe:hover { background: var(--teal-light); box-shadow: 0 0 20px rgba(45,168,157,0.3); }
+    
+    .benefits { text-align: left; margin-bottom: 30px; }
+    .benefit { display: flex; gap: 12px; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; margin-bottom: 8px; }
+    .author { margin-top: 30px; font-size: 0.8rem; color: rgba(250,248,244,0.4); }
   </style>
 </head>
 <body>
 
-  <div class="wrap">
-    
-    <div class="badge">
-      <span style="font-size: 1rem; line-height: 1;">✉️</span> Free Newsletter
-    </div>
+<div class="wrap">
+  <h1>Be the <em>first</em> to know<br>what's coming next</h1>
+  <p class="subtitle">New books. Fresh prompts. Practical AI tools. Straight to your inbox.</p>
 
-    <h1>Stay ahead <em>without</em> the overwhelm.</h1>
-    <p class="subtitle">Join the AI Made Simple community. Get fresh, ready-to-copy prompts and tool recommendations straight to your inbox — before everyone else.</p>
-
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-icon">💡</div>
-        <div class="benefit-text"><strong>Practical Prompts:</strong> Drop-in commands you can use immediately to save hours of work.</div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🚀</div>
-        <div class="benefit-text"><strong>Tool Spotlights:</strong> Honest, hype-free reviews of the AI tools actually worth your time.</div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🎁</div>
-        <div class="benefit-text"><strong>First Access:</strong> Be the first to hear about new books in the series and get exclusive early discounts.</div>
-      </div>
-    </div>
-
-    <div class="form-card">
-      
-      <div class="ml-embedded" data-form="2GxbR4"></div>
-
-      <p class="privacy-note">
-        No spam. Unsubscribe with one click at any time.<br>
-        By subscribing you agree to the processing of your email for newsletter purposes. · 
-        <a href="https://privacy.aidorzeczy.com/" target="_blank" rel="noopener">Privacy Policy</a>
-      </p>
-    </div>
-    <div class="author">
-      <div class="author-divider"></div>
-      Leszek Ignatowicz · ebooks@aidorzeczy.com
-      <div class="author-divider"></div>
-    </div>
-
-    <div class="footer">
-      <a href="https://ebooks.aidorzeczy.com/" target="_blank">ebooks.aidorzeczy.com</a> &nbsp;·&nbsp; AI Made Simple series
-    </div>
-
+  <div class="benefits">
+    <div class="benefit"><span>📚</span> <strong>Early access</strong> to new books in the series.</div>
+    <div class="benefit"><span>✏️</span> <strong>Ready-to-copy prompts</strong> for daily tasks.</div>
   </div>
 
-  <script>
-      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-      ml('account', '2291506');
-  </script>
-  </body>
+  <div class="form-card">
+    <form action="https://assets.mailerlite.com/jsonp/2291506/forms/2GxbR4/subscribe" method="post" target="_self">
+      <div class="field-group">
+        <label class="field-label">First Name</label>
+        <input type="text" class="field-input" name="fields[name]" placeholder="Your name">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email Address</label>
+        <input type="email" class="field-input" name="fields[email]" placeholder="email@example.com" required>
+      </div>
+      
+      <input type="hidden" name="ml-submit" value="1">
+      
+      <button type="submit" class="btn-subscribe">Subscribe →</button>
+    </form>
+
+    <p style="font-size: 0.7rem; color: rgba(250,248,244,0.3); margin-top: 15px; text-align: center;">
+      No spam. Unsubscribe at any time. <br>
+      <a href="https://privacy.aidorzeczy.com/" style="color: var(--gold); text-decoration: none;">Privacy Policy</a>
+    </p>
+  </div>
+
+  <div class="author">Leszek Ignatowicz · ebooks@aidorzeczy.com</div>
+</div>
+
+</body>
 </html>
